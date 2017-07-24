@@ -1,0 +1,18 @@
+PODS:
+  - Alamofire (4.5.0)
+  - Bolts/Tasks (1.8.4)
+  - Parse (1.15.0):
+    - Bolts/Tasks (~> 1.8)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.5)
+  - Parse (~> 1.15)
+
+SPEC CHECKSUMS:
+  Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
+  Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  Parse: c0519f8fbf57bd0334f75cd22ac032d86ee55464
+
+PODFILE CHECKSUM: cc845d3eb138e24e9c9793a1a837b7f8cfe0ee18
+
+COCOAPODS: 1.2.0.beta.1
