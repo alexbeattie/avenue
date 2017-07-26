@@ -15,7 +15,8 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var propName: UILabel!
     @IBOutlet weak var propPrice: UILabel!
     @IBOutlet weak var propImage: UIImageView!
-
+    
+    @IBOutlet weak var propDesc: UITextView!
     @IBOutlet var mapView: MKMapView!
     @IBAction func goMainMap(sender: AnyObject) {
         performSegue(withIdentifier: "allListingsMap", sender: self)
@@ -78,6 +79,9 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate {
         if let theCost = propObj["cost"] {
             self.propPrice.text = theCost as? String
             }
+        if let theDesc = propObj["listingDescription"] {
+            self.propDesc.text = theDesc as? String
+        }
 
         if let imageFile = self.propObj["imageFile"] as? PFFile {
             imageFile.getDataInBackground { (imageData, error) -> Void in
@@ -90,8 +94,6 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
-    
-//    Map
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
