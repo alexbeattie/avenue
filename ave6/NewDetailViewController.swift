@@ -10,8 +10,10 @@ import UIKit
 import Parse
 import MapKit
 
-class NewDetailViewController: UIViewController, MKMapViewDelegate {
 
+class NewDetailViewController: UIViewController, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource {
+
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var propName: UILabel!
     @IBOutlet weak var propPrice: UILabel!
     @IBOutlet weak var propImage: UIImageView!
@@ -49,6 +51,7 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate {
         let objectsToShare = [textToShare, site] as [Any]
         let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
         activityVC.popoverPresentationController?.sourceView = sender as? UIView
+        activityVC.popoverPresentationController?.barButtonItem = (sender as! UIBarButtonItem)
         self.present(activityVC, animated: true, completion: nil)
         
     }
@@ -61,6 +64,9 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
         
         if mapView.annotations.count != 0 {
             annotation = mapView.annotations[0]
@@ -98,30 +104,79 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate {
         super.viewWillAppear(animated)
         
         
-        if let theName = propObj["name"] {
-            self.propName.text = theName as? String
-        }
-        
-        if let theCost = propObj["cost"] {
-            self.propPrice.text = theCost as? String
-        }
-        
-        if let theDesc = propObj["listingDescription"] {
-            self.propDesc.text = theDesc as? String
-        }
+//        if let theName = propObj["name"] {
+//            self.propName.text = theName as? String
+//        }
+//        
+//        if let theCost = propObj["cost"] {
+//            self.propPrice.text = theCost as? String
+//        }
+//        
+//        
+//        
+//        if let theDesc = propObj["listingDescription"] {
+//            self.propDesc.text = theDesc as? String
+//            
+//            
+//        }
 
-        if let imageFile = self.propObj["imageFile"] as? PFFile {
-            imageFile.getDataInBackground { (imageData, error) -> Void in
-                print(imageFile)
-                if error == nil {
-                    if let imageData = imageData {
-                        print(imageData)
-                        self.propImage.image = UIImage(data: imageData)
-                    }
-                }
-            }
-        }
+        
+        
+//        if let imageFile = self.propObj["imageFile"] as? PFFile {
+//            imageFile.getDataInBackground { (imageData, error) -> Void in
+//                print(imageFile)
+//                if error == nil {
+//                    if let imageData = imageData {
+//                        print(imageData)
+//                        self.propImage.image = UIImage(data: imageData)
+//                    }
+//                }
+//            }
+//        }
     }
+    
+    
+    
+    // start tableview
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "DescriptionCell", for: indexPath) as? DescriptionCell else { return UITableViewCell() }
+
+        
+        cell.propName.text = propObj["name"] as? String
+        cell.propCost.text = propObj["cost"] as? String
+        cell.propDesc.text = propObj["listingDescription"] as? String
+        return cell
+        
+        //        if let theName = propObj["name"] {
+//            self.propName.text = theName as? String
+//        }
+//        
+//        if let theCost = propObj["cost"] {
+//            self.propPrice.text = theCost as? String
+//        }
+//        
+//        if let theDesc = propObj["listingDescription"] {
+//            self.propDesc.text = theDesc as? String
+//        }
+
+        
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    
+    
+    
+    
+    
+    
     
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
