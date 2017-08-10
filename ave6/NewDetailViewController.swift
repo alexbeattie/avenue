@@ -93,7 +93,9 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate, UITableViewD
         newAnnotation.subtitle = propObj["cost"] as? String
         mapView.addAnnotation(newAnnotation)
         mapView.selectAnnotation(newAnnotation, animated: true)
-        
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 140
+
     }
 
     var propObj = PFObject(className: "allListings")
@@ -136,7 +138,6 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate, UITableViewD
     }
     
     
-    
     // start tableview
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -145,11 +146,14 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "DescriptionCell", for: indexPath) as? DescriptionCell else { return UITableViewCell() }
-
+        
         
         cell.propName.text = propObj["name"] as? String
         cell.propCost.text = propObj["cost"] as? String
         cell.propDesc.text = propObj["listingDescription"] as? String
+//        cell.propDesc.sizeToFit() 
+        
+
         return cell
         
         //        if let theName = propObj["name"] {
