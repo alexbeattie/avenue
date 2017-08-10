@@ -104,37 +104,15 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate, UITableViewD
     override func viewWillAppear(_ animated: Bool) {
         print("Im in View Will Appear")
         super.viewWillAppear(animated)
-        
-        
-//        if let theName = propObj["name"] {
-//            self.propName.text = theName as? String
-//        }
-//        
-//        if let theCost = propObj["cost"] {
-//            self.propPrice.text = theCost as? String
-//        }
-//        
-//        
-//        
-//        if let theDesc = propObj["listingDescription"] {
-//            self.propDesc.text = theDesc as? String
-//            
-//            
-//        }
+        self.title = propObj["name"] as? String
 
+//        UINavigationBar.appearance().titleTextAttributes = [
+//            NSFontAttributeName: UIFont(name: "Bodoni MT", size: 22)!,
+//            NSForegroundColorAttributeName: #colorLiteral(red: 0.1729493737, green: 0.8569635749, blue: 0.8771796823, alpha: 0.5)
+//        ]
+        self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         
-        
-//        if let imageFile = self.propObj["imageFile"] as? PFFile {
-//            imageFile.getDataInBackground { (imageData, error) -> Void in
-//                print(imageFile)
-//                if error == nil {
-//                    if let imageData = imageData {
-//                        print(imageData)
-//                        self.propImage.image = UIImage(data: imageData)
-//                    }
-//                }
-//            }
-//        }
+//      self.navigationController?.navigationBar.layer.shadowColor = [UIColor colorWithRed:53.0/255.0 green:108.0/255.0 blue:130.0/255.0 alpha:1.0f].CGColor
     }
     
     

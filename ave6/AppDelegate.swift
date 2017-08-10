@@ -26,7 +26,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Parse.initialize(with: parseConfiguration)
         
+//
+//        UINavigationBar.appearance().titleTextAttributes = [
+//            NSFontAttributeName: UIFont(name: "Bodoni MT", size: 22)!,
+//            NSForegroundColorAttributeName: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+//        ]
+        
+        UINavigationBar.appearance().titleTextAttributes = [
+            NSFontAttributeName: UIFont(name: "Bodoni MT", size: 22)!,
+            NSForegroundColorAttributeName: #colorLiteral(red: 0.1729493737, green: 0.8569635749, blue: 0.8771796823, alpha: 1)
+        ]
+//        UINavigationBar.appearance().barTintColor = #colorLiteral(red: 0.1729493737, green: 0.8569635749, blue: 0.8771796823, alpha: 0.5)
+        
+//        UINavigationBar.appearance().titleTextAttributes = [
+//            NSFontAttributeName: UIFont(name: "Bodoni MT", size: 20)!,
+//            NSForegroundColorAttributeName: #colorLiteral(red: 0.1729493737, green: 0.8569635749, blue: 0.8771796823, alpha: 1)
+//        ]
+        
+        
+        
+        
+        
         return true
+        
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

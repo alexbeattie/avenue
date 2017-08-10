@@ -22,7 +22,7 @@ class CollectionViewController: UICollectionViewController {
         let width = collectionView!.frame.width / 3
         let layout = collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: width, height: width)
-
+        self.title = "Avenue Properties"
         queryAllListings()
 
     }
@@ -85,57 +85,6 @@ class CollectionViewController: UICollectionViewController {
         return cell
     }
 
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
-    
-//    func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        print("preparing")
-//        if segue.identifier == "mySegue" {
-//            if let cell = sender as? CollectionViewCell {
-//                if let index = listingCollectionView!.indexPath(for: cell)?.item {
-//                    if let destinationVC = segue.destination as? DetailViewController {
-//
-//
-//                        destinationVC.webSite = (recentListings[index] as AnyObject) as! PFObject
-//                        
-//                        //                        destinationVC.name = propObj["name"] as? String
-//                        print("index")
-//                    }
-//                }
-//            }
-//        }
-//    }
-
-    
-    
     
     func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         print("preparing")
@@ -145,15 +94,10 @@ class CollectionViewController: UICollectionViewController {
 
             let cell = sender as? CollectionViewCell
             _ = listingCollectionView!.indexPath(for: cell!)?.item
-
-//            listingClass = recentListings[indexPath.row] as! PFObject
-
             _ = segue.destination as? NewDetailViewController
-//            destinationVC?.webSite = listingClass["name"] as! PFObject
+         
             print(listingClass)
-            
-                        //                        destinationVC.name = propObj["name"] as? String
-                        print("index")
+            print("index")
             
         }
     }
@@ -162,12 +106,16 @@ class CollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         cellSelected = indexPath.item
         print("Did select!")
-                var listingClass = PFObject(className: "allListings")
-                listingClass = recentListings[indexPath.row] as! PFObject
+        let barBtn = UIBarButtonItem()
+        barBtn.title = ""
+        navigationItem.backBarButtonItem = barBtn
         
-                let pdVC =  storyboard!.instantiateViewController(withIdentifier: "PropertyDetails") as! NewDetailViewController
-                pdVC.propObj = listingClass
-                navigationController?.pushViewController(pdVC, animated: true)
+        var listingClass = PFObject(className: "allListings")
+        listingClass = recentListings[indexPath.row] as! PFObject
+
+        let pdVC =  storyboard!.instantiateViewController(withIdentifier: "PropertyDetails") as! NewDetailViewController
+        pdVC.propObj = listingClass
+        navigationController?.pushViewController(pdVC, animated: true)
 
     }
     
