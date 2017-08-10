@@ -31,6 +31,10 @@ class CollectionViewController: UICollectionViewController {
         super.didReceiveMemoryWarning()
     }
 
+    @IBAction func refresh(_ sender: Any) {
+        queryAllListings()
+        collectionView?.reloadData()
+    }
 
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {

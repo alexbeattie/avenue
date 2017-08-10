@@ -25,6 +25,10 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate {
         performSegue(withIdentifier: "allListingsMap", sender: self)
     }
     
+    
+
+    
+    
     var listingClass = PFObject(className: "allListings")
     var addressItems = PFGeoPoint()
 
@@ -33,6 +37,27 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate {
     var pinView:MKPinAnnotationView!
     var region: MKCoordinateRegion!
     var mapType: MKMapType!
+//    let website: String? = "fuck"
+    
+    @IBAction func share(_ sender: Any) {
+        let textToShare = "Share this!"
+        guard let site = NSURL(string: propObj["url"]! as! String) else { return }
+        
+        
+        
+//        guard let site = NSURL(string: "http://artisanbranding.com") else { return }
+        let objectsToShare = [textToShare, site] as [Any]
+        let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+        activityVC.popoverPresentationController?.sourceView = sender as? UIView
+        self.present(activityVC, animated: true, completion: nil)
+        
+    }
+    
+    
+    
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,14 +79,12 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate {
         
         if let theLocation = propObj["addressItems"] as? PFGeoPoint {
             CLLocationCoordinate2DMake(addressItems.latitude, addressItems.longitude)
-            print(theLocation)
+            print(theLocation.latitude, theLocation.longitude)
         }
         let newAnnotation = MKPointAnnotation()
         newAnnotation.coordinate = location
         newAnnotation.title = propObj["name"] as? String
         newAnnotation.subtitle = propObj["cost"] as? String
-        mapView.mapType = MKMapType.hybridFlyover
-        mapView.showsPointsOfInterest = true
         mapView.addAnnotation(newAnnotation)
         mapView.selectAnnotation(newAnnotation, animated: true)
         
@@ -69,24 +92,30 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate {
 
     var propObj = PFObject(className: "allListings")
 
+   
     override func viewWillAppear(_ animated: Bool) {
-        print("Im Here")
+        print("Im in View Will Appear")
         super.viewWillAppear(animated)
+        
         
         if let theName = propObj["name"] {
             self.propName.text = theName as? String
-            }
+        }
+        
         if let theCost = propObj["cost"] {
             self.propPrice.text = theCost as? String
-            }
+        }
+        
         if let theDesc = propObj["listingDescription"] {
             self.propDesc.text = theDesc as? String
         }
 
         if let imageFile = self.propObj["imageFile"] as? PFFile {
             imageFile.getDataInBackground { (imageData, error) -> Void in
+                print(imageFile)
                 if error == nil {
                     if let imageData = imageData {
+                        print(imageData)
                         self.propImage.image = UIImage(data: imageData)
                     }
                 }
@@ -98,11 +127,12 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
         let annoView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "Default")
-        annoView.pinTintColor = UIColor.blue
+        annoView.pinTintColor = #colorLiteral(red: 0.5137254902, green: 0.8470588235, blue: 0.8117647059, alpha: 1)
         annoView.animatesDrop = true
         annoView.canShowCallout = true
-        let swiftColor = UIColor(red: 60.0/255.0, green: 109.0/255.0, blue: 109.0/255.0, alpha: 0.80)
-        
+//        let swiftColor = UIColor(red: 60.0/255.0, green: 109.0/255.0, blue: 109.0/255.0, alpha: 0.80)
+        let swiftColor = #colorLiteral(red: 0.5137254902, green: 0.8470588235, blue: 0.8117647059, alpha: 1)
+        annoView.centerOffset = CGPoint(x: 100, y: 400)
         annoView.pinTintColor = swiftColor
         
         // Add a RIGHT CALLOUT Accessory
@@ -110,11 +140,14 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate {
         rightButton.frame = CGRect(x:0, y:0, width:32, height:32)
         rightButton.layer.cornerRadius = rightButton.bounds.size.width/2
         rightButton.clipsToBounds = true
+        rightButton.tintColor = #colorLiteral(red: 0.5137254902, green: 0.8470588235, blue: 0.8117647059, alpha: 1)
+        
         annoView.rightCalloutAccessoryView = rightButton
         
         
         let leftIconView = UIImageView()
-        leftIconView.image = UIImage(named: "")
+//        leftIconView.image = UIImage(named: "")
+        leftIconView.contentMode = .scaleAspectFill
         if let thumbImage = propObj["imageFile"] as? PFFile {
             thumbImage.getDataInBackground() { (imageData, error) -> Void in
                 if error == nil {
@@ -130,7 +163,7 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate {
         
         let newBounds = CGRect(x:0.0, y:0.0, width:54.0, height:54.0)
         leftIconView.bounds = newBounds
-        annoView.sizeToFit()
+//        annoView.sizeToFit()
         annoView.leftCalloutAccessoryView = leftIconView
         
         
@@ -149,7 +182,6 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate {
         let placemark = MKPlacemark(coordinate: location, addressDictionary: nil)
         
         let item = MKMapItem(placemark: placemark)
-        //        let camera = MKMapCamera(lookingAtCenterCoordinate: location, fromEyeCoordinate: location, eyeAltitude: 80000)
         item.name = self.propObj["name"] as? String
         item.openInMaps (launchOptions: [MKLaunchOptionsMapTypeKey: 2,
                                            MKLaunchOptionsMapCenterKey:NSValue(mkCoordinate: placemark.coordinate),
@@ -165,12 +197,8 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate {
                 self.goOutToGetMap()
             }
             alertController.addAction(OKAction)
-            
-            
-            
-            
+        
             present(alertController, animated: true) {
-                
                 
             }
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
@@ -179,11 +207,7 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate {
             alertController.addAction(cancelAction)
         }
     
-            
-//            performSegueWithIdentifier("goToPop", sender: self)
     
-            
-    
-        
+
 
 }
