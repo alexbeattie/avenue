@@ -11,11 +11,6 @@ import Parse
 
 let APP_NAME = "Avenue"
 
-//var hudView = UIView()
-//var animImage = UIImageView(frame: CGRectMake(0, 0, 80, 80))
-
-//let URL_BASE = "https://trailapi-trailapi.p.mashape.com/"
-//let URL_POKEMON = "/api/v1/pokemon/"
 
 typealias DownloadComplete = () -> ()
 
@@ -24,12 +19,9 @@ typealias DownloadComplete = () -> ()
 
 
 
-let PROP_CLASS_NAME = "Recipe"
+let PROP_CLASS_NAME = "allListings"
 let PROP_TITLE = "name"
 let PROP_IMAGE = "imageFile"
-let PROP_IMAGE2 = "imageFile_2"
-let PROP_IMAGE3 = "imageFile_3"
-let PROP_IMAGE4 = "imageFile_4"
 
 let PROP_DESCRIPTION = "listingDescription"
 let PROP_PRICE = "priceString"

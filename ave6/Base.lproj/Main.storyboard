@@ -200,6 +200,15 @@
                             <constraint firstItem="2aM-QY-V9I" firstAttribute="centerX" secondItem="bp4-WC-y7P" secondAttribute="centerX" id="uWf-nu-PJl"/>
                         </constraints>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="ndn-fg-ohQ"/>
+                        <barButtonItem image="map" style="plain" id="E2Z-zV-mjo">
+                            <connections>
+                                <action selector="gotToAllMap:" destination="3AO-ZM-L6X" id="7If-3m-Yol"/>
+                                <segue destination="yfp-qm-VGl" kind="show" identifier="toAllListingsMapVC" id="V1d-g2-kVq"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" id="o0s-cb-wWs">
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="GX7-FL-IrM">
                             <connections>
@@ -207,6 +216,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="mapView" destination="QSz-vu-s5M" id="fCO-E6-wRG"/>
                         <outlet property="tableView" destination="2aM-QY-V9I" id="P8T-F9-oAa"/>
@@ -215,6 +225,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0WK-fM-fQx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1776.8" y="105.69715142428787"/>
+        </scene>
+        <!--All Listings Map View-->
+        <scene sceneID="BID-78-FbZ">
+            <objects>
+                <viewController id="yfp-qm-VGl" customClass="AllListingsMapView" customModule="ave6" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9cH-be-3gi"/>
+                        <viewControllerLayoutGuide type="bottom" id="CW3-WP-PXg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZgU-7R-VLc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="psr-iu-hJo">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="psr-iu-hJo" firstAttribute="top" secondItem="ZgU-7R-VLc" secondAttribute="top" id="140-C7-dLT"/>
+                            <constraint firstItem="CW3-WP-PXg" firstAttribute="top" secondItem="psr-iu-hJo" secondAttribute="bottom" id="AAe-PE-56E"/>
+                            <constraint firstAttribute="trailing" secondItem="psr-iu-hJo" secondAttribute="trailing" id="SiJ-Fw-89o"/>
+                            <constraint firstItem="psr-iu-hJo" firstAttribute="leading" secondItem="ZgU-7R-VLc" secondAttribute="leading" id="sk0-S2-VpO"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="psr-iu-hJo" id="3Ct-he-W7B"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="giU-OI-tOV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2462" y="106"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dhz-mP-Bdo">
@@ -240,4 +282,7 @@
             <point key="canvasLocation" x="434.39999999999998" y="107.49625187406298"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="map" width="22" height="22"/>
+    </resources>
 </document>

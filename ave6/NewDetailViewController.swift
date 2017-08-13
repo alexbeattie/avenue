@@ -244,7 +244,7 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate, UITableViewD
             alertController.addAction(cancelAction)
         }
     
-    
-
-
+    @IBAction func gotToAllMap(_ sender: Any) {
+        performSegue(withIdentifier: "toAllListingsMapVC", sender: self)
+    }
 }

@@ -22,9 +22,10 @@ class CollectionViewController: UICollectionViewController {
         let width = collectionView!.frame.width / 3
         let layout = collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: width, height: width)
+        
         self.title = "Avenue Properties"
-        queryAllListings()
 
+        queryAllListings()
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,7 +49,9 @@ class CollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
-//        cell.image.image = nil;
+        
+        //cell.image.image = nil;
+        
         var listingClass = PFObject(className: "allListings")
         listingClass = recentListings[indexPath.row] as! PFObject
         DispatchQueue.main.async(execute: { () -> Void in
@@ -58,16 +61,11 @@ class CollectionViewController: UICollectionViewController {
                 if error == nil {
                     if let imageData = imageData {
                         cell.image.image = UIImage(data: imageData)
-                    }else {
                     }
-//                    cell.activityIndicator.stopAnimating()
-                    
+                    //cell.activityIndicator.stopAnimating()
                 }
             }
-            
         })
-
-    
         if let listingName = listingClass["name"] as? String {
             cell.tName.text = listingName
         }
@@ -75,31 +73,13 @@ class CollectionViewController: UICollectionViewController {
         let formatter = NumberFormatter()
         formatter.usesSignificantDigits = false
         formatter.minimumSignificantDigits = 1
-//        formatter.numberStyle = NumberFormatter.
-        
+        //formatter.numberStyle = NumberFormatter.
         
         if let listingPrice = listingClass["cost"] as? String {
             cell.tPrice.text =  listingPrice
         }
         
         return cell
-    }
-
-    
-    func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        print("preparing")
-        if segue.identifier == "mySegue" {
-            let listingClass = PFObject(className: "allListings")
-            
-
-            let cell = sender as? CollectionViewCell
-            _ = listingCollectionView!.indexPath(for: cell!)?.item
-            _ = segue.destination as? NewDetailViewController
-         
-            print(listingClass)
-            print("index")
-            
-        }
     }
     
     var cellSelected : Int = 0
@@ -110,7 +90,7 @@ class CollectionViewController: UICollectionViewController {
         barBtn.title = ""
         navigationItem.backBarButtonItem = barBtn
         
-        var listingClass = PFObject(className: "allListings")
+        var listingClass = PFObject(className: PROP_CLASS_NAME)
         listingClass = recentListings[indexPath.row] as! PFObject
 
         let pdVC =  storyboard!.instantiateViewController(withIdentifier: "PropertyDetails") as! NewDetailViewController
@@ -119,26 +99,13 @@ class CollectionViewController: UICollectionViewController {
 
     }
     
-//    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-//        cellSelected = indexPath.item
-//        print("Did select!")
-//
-////        var listingClass = PFObject(className: "allListings")
-////        listingClass = recentListings[indexPath.row] as! PFObject
-////        
-////        let pdVC =  storyboard!.instantiateViewController(withIdentifier: "PropertyDetails") as! NewDetailViewController
-//////        pdVC.propObj = listingClass
-////        navigationController?.pushViewController(pdVC, animated: true)
-//        //        print(listingClass)
-//        //        print(addressItems)
-//    }
-    
-    
+
     
     func queryAllListings() {
         recentListings.removeAllObjects()
         
-        let query = PFQuery(className: "allListings")
+        let query = PFQuery(className: PROP_CLASS_NAME)
+        
         query.order(byDescending: "price")
         query.cachePolicy = .networkElseCache
         
@@ -147,19 +114,15 @@ class CollectionViewController: UICollectionViewController {
                 if let objects = objects  {
                     for object in objects {
                         self.recentListings.add(object)
-                        print(object)
+                       // print(object)
                     }
                 }
-                // Reload CollView
-                
-                
                 self.listingCollectionView.reloadData()
-//                self.view.hideHUD()
-                
+                //self.view.hideHUD()
             } else {
                 print("alex")
                 
-            } }
-
+            }
+        }
     }
 }
