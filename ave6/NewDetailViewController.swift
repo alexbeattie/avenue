@@ -16,7 +16,7 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate, UITableViewD
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var propName: UILabel!
     @IBOutlet weak var propPrice: UILabel!
-    @IBOutlet weak var propImage: UIImageView!
+    @IBOutlet var propImage: UIImageView!
     
     @IBOutlet weak var propDesc: UITextView!
     @IBOutlet var mapView: MKMapView!
@@ -106,13 +106,9 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate, UITableViewD
         super.viewWillAppear(animated)
         self.title = propObj["name"] as? String
 
-//        UINavigationBar.appearance().titleTextAttributes = [
-//            NSFontAttributeName: UIFont(name: "Bodoni MT", size: 22)!,
-//            NSForegroundColorAttributeName: #colorLiteral(red: 0.1729493737, green: 0.8569635749, blue: 0.8771796823, alpha: 0.5)
-//        ]
+
         self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         
-//      self.navigationController?.navigationBar.layer.shadowColor = [UIColor colorWithRed:53.0/255.0 green:108.0/255.0 blue:130.0/255.0 alpha:1.0f].CGColor
     }
     
     
@@ -183,7 +179,6 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate, UITableViewD
         
         
         let leftIconView = UIImageView()
-//        leftIconView.image = UIImage(named: "")
         leftIconView.contentMode = .scaleAspectFill
         if let thumbImage = propObj["imageFile"] as? PFFile {
             thumbImage.getDataInBackground() { (imageData, error) -> Void in
@@ -196,11 +191,8 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate, UITableViewD
                 }
             }
         }
-        
-        
         let newBounds = CGRect(x:0.0, y:0.0, width:54.0, height:54.0)
         leftIconView.bounds = newBounds
-//        annoView.sizeToFit()
         annoView.leftCalloutAccessoryView = leftIconView
         
         

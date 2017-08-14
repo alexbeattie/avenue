@@ -15,7 +15,15 @@ class CollectionViewController: UICollectionViewController {
 @IBOutlet weak var listingCollectionView: UICollectionView!
 
     var recentListings = NSMutableArray()
-
+    override func viewWillAppear(_ animated: Bool) {
+        print("Im in View Will Appear")
+        super.viewWillAppear(animated)
+//        queryAllListings()
+        
+        
+        
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -100,7 +108,7 @@ class CollectionViewController: UICollectionViewController {
     }
     
 
-    
+
     func queryAllListings() {
         recentListings.removeAllObjects()
         

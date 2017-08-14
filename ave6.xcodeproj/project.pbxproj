@@ -30,7 +30,7 @@
 		57C066C3B1D856AB16B1B5B9 /* Pods-ave6.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ave6.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ave6/Pods-ave6.debug.xcconfig"; sourceTree = "<group>"; };
 		8E006C391F1AD23300BDDAA4 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		8E006C3B1F1AD56200BDDAA4 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
-		8E006C3D1F1AD66100BDDAA4 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Config.swift; path = ../Config.swift; sourceTree = "<group>"; };
+		8E006C3D1F1AD66100BDDAA4 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		8E3A8E901F254C0300AA28CD /* Annotations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Annotations.swift; sourceTree = "<group>"; };
 		8E3A8E921F254FCE00AA28CD /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		8E4781251F1ACE3500092EFB /* ave6-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ave6-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -101,6 +101,14 @@
 			name = "All Listings Map";
 			sourceTree = "<group>";
 		};
+		8E60ACBF1F40C5400024B2CA /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				8E006C3D1F1AD66100BDDAA4 /* Config.swift */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
 		8E7F847D1F3CBFC000057563 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -131,8 +139,8 @@
 		8EF732931F1ACB89004CF9B2 /* ave6 */ = {
 			isa = PBXGroup;
 			children = (
+				8E60ACBF1F40C5400024B2CA /* Utility */,
 				8E7F847D1F3CBFC000057563 /* Views */,
-				8E006C3D1F1AD66100BDDAA4 /* Config.swift */,
 				8E60ACBA1F40B7030024B2CA /* All Listings Map */,
 				8E3A8E8F1F25343B00AA28CD /* Main Listings Page */,
 				8EF732941F1ACB89004CF9B2 /* AppDelegate.swift */,

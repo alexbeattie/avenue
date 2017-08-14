@@ -33,7 +33,6 @@ let NEW_PROP_PRICE = "price"
 let PROP_ADDRESS = "addressItems"
 let PROP_ADDRESS_LOWERCASE = "addressLowercase"
 let PROP_DETAILS = "details"
-let PROP_SELLER_POINTER = "sellerPointer"
 
 
 
