@@ -150,7 +150,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IgG-NX-sKs">
-                                                    <rect key="frame" x="8" y="66" width="359" height="102"/>
+                                                    <rect key="frame" x="8" y="147.5" width="359" height="20.5"/>
                                                     <color key="tintColor" red="0.51372549020000002" green="0.84705882349999995" blue="0.81176470590000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" name="BodoniSvtyTwoITCTT-Book" family="Bodoni 72" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -170,7 +170,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="IgG-NX-sKs" secondAttribute="trailing" constant="8" id="GUl-0D-7Vi"/>
                                                 <constraint firstItem="IgG-NX-sKs" firstAttribute="leading" secondItem="nSC-Kv-je8" secondAttribute="leading" constant="8" id="L66-sR-aWm"/>
                                                 <constraint firstItem="szQ-oF-Q2h" firstAttribute="leading" secondItem="nSC-Kv-je8" secondAttribute="leadingMargin" id="Mka-5Z-Mqx"/>
-                                                <constraint firstItem="IgG-NX-sKs" firstAttribute="top" secondItem="X59-Co-kXG" secondAttribute="bottom" constant="8" id="dAj-wA-Ieg"/>
+                                                <constraint firstItem="IgG-NX-sKs" firstAttribute="top" secondItem="X59-Co-kXG" secondAttribute="bottom" constant="8" id="Rnz-Vs-Sba"/>
                                                 <constraint firstItem="szQ-oF-Q2h" firstAttribute="top" secondItem="nSC-Kv-je8" secondAttribute="topMargin" id="gzV-ar-B0a"/>
                                                 <constraint firstItem="X59-Co-kXG" firstAttribute="top" secondItem="szQ-oF-Q2h" secondAttribute="bottom" constant="8" id="mDw-Fb-GAY"/>
                                                 <constraint firstItem="X59-Co-kXG" firstAttribute="leading" secondItem="nSC-Kv-je8" secondAttribute="leadingMargin" id="qXW-RJ-8Vx"/>
@@ -202,6 +202,16 @@
                     </view>
                     <toolbarItems>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="ndn-fg-ohQ"/>
+                        <barButtonItem systemItem="compose" id="Xp1-Du-1OU">
+                            <connections>
+                                <action selector="mailButtWithSender:" destination="3AO-ZM-L6X" id="TZN-aT-p9c"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem systemItem="play" id="l6J-6j-DVy">
+                            <connections>
+                                <action selector="playBtn:" destination="3AO-ZM-L6X" id="rHv-Us-OUU"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem image="map" style="plain" id="E2Z-zV-mjo">
                             <connections>
                                 <action selector="gotToAllMap:" destination="3AO-ZM-L6X" id="7If-3m-Yol"/>

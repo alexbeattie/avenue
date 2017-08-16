@@ -18,6 +18,8 @@
 		8E7F847A1F3CBEB700057563 /* BOD_R.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 8E7F84791F3CBEB700057563 /* BOD_R.TTF */; };
 		8E7F847C1F3CBFB800057563 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7F847B1F3CBFB800057563 /* GradientView.swift */; };
 		8E7F847F1F3CDCC700057563 /* DescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7F847E1F3CDCC700057563 /* DescriptionCell.swift */; };
+		8EC880991F422EDF0006938C /* MovieController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC880981F422EDF0006938C /* MovieController.swift */; };
+		8EC8809C1F42318A0006938C /* mercer.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 8EC8809B1F422F9C0006938C /* mercer.mp4 */; };
 		8EF732951F1ACB89004CF9B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF732941F1ACB89004CF9B2 /* AppDelegate.swift */; };
 		8EF7329A1F1ACB89004CF9B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EF732981F1ACB89004CF9B2 /* Main.storyboard */; };
 		8EF7329C1F1ACB89004CF9B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EF7329B1F1ACB89004CF9B2 /* Assets.xcassets */; };
@@ -40,6 +42,8 @@
 		8E7F84791F3CBEB700057563 /* BOD_R.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = BOD_R.TTF; sourceTree = "<group>"; };
 		8E7F847B1F3CBFB800057563 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		8E7F847E1F3CDCC700057563 /* DescriptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescriptionCell.swift; sourceTree = "<group>"; };
+		8EC880981F422EDF0006938C /* MovieController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieController.swift; sourceTree = "<group>"; };
+		8EC8809B1F422F9C0006938C /* mercer.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = mercer.mp4; sourceTree = "<group>"; };
 		8EF732911F1ACB89004CF9B2 /* ave6.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ave6.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EF732941F1ACB89004CF9B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8EF732991F1ACB89004CF9B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -117,6 +121,14 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		8EC8809A1F422EED0006938C /* Movie */ = {
+			isa = PBXGroup;
+			children = (
+				8EC880981F422EDF0006938C /* MovieController.swift */,
+			);
+			name = Movie;
+			sourceTree = "<group>";
+		};
 		8EF732881F1ACB89004CF9B2 = {
 			isa = PBXGroup;
 			children = (
@@ -139,12 +151,14 @@
 		8EF732931F1ACB89004CF9B2 /* ave6 */ = {
 			isa = PBXGroup;
 			children = (
+				8EC8809A1F422EED0006938C /* Movie */,
 				8E60ACBF1F40C5400024B2CA /* Utility */,
 				8E7F847D1F3CBFC000057563 /* Views */,
 				8E60ACBA1F40B7030024B2CA /* All Listings Map */,
 				8E3A8E8F1F25343B00AA28CD /* Main Listings Page */,
 				8EF732941F1ACB89004CF9B2 /* AppDelegate.swift */,
 				8E7F84791F3CBEB700057563 /* BOD_R.TTF */,
+				8EC8809B1F422F9C0006938C /* mercer.mp4 */,
 				8EF732981F1ACB89004CF9B2 /* Main.storyboard */,
 				8EF7329B1F1ACB89004CF9B2 /* Assets.xcassets */,
 				8EF7329D1F1ACB89004CF9B2 /* LaunchScreen.storyboard */,
@@ -222,6 +236,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8EC8809C1F42318A0006938C /* mercer.mp4 in Resources */,
 				8EF7329F1F1ACB89004CF9B2 /* LaunchScreen.storyboard in Resources */,
 				8EF7329C1F1ACB89004CF9B2 /* Assets.xcassets in Resources */,
 				8EF7329A1F1ACB89004CF9B2 /* Main.storyboard in Resources */,
@@ -286,6 +301,7 @@
 			files = (
 				8E006C3A1F1AD23300BDDAA4 /* CollectionViewController.swift in Sources */,
 				8E006C3E1F1AD66100BDDAA4 /* Config.swift in Sources */,
+				8EC880991F422EDF0006938C /* MovieController.swift in Sources */,
 				8E3A8E911F254C0300AA28CD /* Annotations.swift in Sources */,
 				8E60ACBC1F40B73D0024B2CA /* AllListingsMapView.swift in Sources */,
 				8EF732951F1ACB89004CF9B2 /* AppDelegate.swift in Sources */,

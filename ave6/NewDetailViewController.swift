@@ -9,9 +9,12 @@
 import UIKit
 import Parse
 import MapKit
+import AVKit
+import AVFoundation
+import MessageUI
 
-
-class NewDetailViewController: UIViewController, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource {
+class NewDetailViewController: UIViewController, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate {
+    @IBOutlet weak var playBtn: UIButton!
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var propName: UILabel!
@@ -41,13 +44,18 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate, UITableViewD
     var mapType: MKMapType!
 //    let website: String? = "fuck"
     
+
+        @IBAction func playBtn(_ sender: Any) {
+        playVideo()
+        print("button tapped")
+
+    }
+    
+ 
+    
     @IBAction func share(_ sender: Any) {
-        let textToShare = "Share this!"
+        let textToShare = propObj["name"]! as! String
         guard let site = NSURL(string: propObj["url"]! as! String) else { return }
-        
-        
-        
-//        guard let site = NSURL(string: "http://artisanbranding.com") else { return }
         let objectsToShare = [textToShare, site] as [Any]
         let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
         activityVC.popoverPresentationController?.sourceView = sender as? UIView
@@ -111,7 +119,18 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate, UITableViewD
         
     }
     
-    
+    private func playVideo() {
+        guard let path = Bundle.main.path(forResource: "mercer", ofType:"mp4") else {
+            debugPrint("video.m4v not found")
+            return
+        }
+        let player = AVPlayer(url: URL(fileURLWithPath: path))
+        let playerController = AVPlayerViewController()
+        playerController.player = player
+        present(playerController, animated: true) {
+            player.play()
+        }
+    }
     // start tableview
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -121,41 +140,36 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate, UITableViewD
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "DescriptionCell", for: indexPath) as? DescriptionCell else { return UITableViewCell() }
         
+        if let theName = propObj["name"] {
+            cell.propName.text = theName as? String
+        }
         
-        cell.propName.text = propObj["name"] as? String
-        cell.propCost.text = propObj["cost"] as? String
-        cell.propDesc.text = propObj["listingDescription"] as? String
-//        cell.propDesc.sizeToFit() 
+        if let theCost = propObj["cost"] as? String {
+            cell.propCost.text = theCost
+        }
         
-
+        if let theDesc = propObj["listingDescription"] {
+            cell.propDesc.text = theDesc as? String
+        }
+        
+        if let thumbImage = propObj["imageFile"] as? PFFile {
+            thumbImage.getDataInBackground() { (imageData, error) -> Void in
+                if error == nil {
+                    if let imageData = imageData {
+                        cell.imageView?.image = UIImage(data:imageData)
+                        print(thumbImage)
+                    }
+                }
+            }
+        }
+        
         return cell
-        
-        //        if let theName = propObj["name"] {
-//            self.propName.text = theName as? String
-//        }
-//        
-//        if let theCost = propObj["cost"] {
-//            self.propPrice.text = theCost as? String
-//        }
-//        
-//        if let theDesc = propObj["listingDescription"] {
-//            self.propDesc.text = theDesc as? String
-//        }
-
-        
     }
+
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
-    
-    
-    
-    
-    
-    
-    
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
@@ -163,7 +177,6 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate, UITableViewD
         annoView.pinTintColor = #colorLiteral(red: 0.5137254902, green: 0.8470588235, blue: 0.8117647059, alpha: 1)
         annoView.animatesDrop = true
         annoView.canShowCallout = true
-//        let swiftColor = UIColor(red: 60.0/255.0, green: 109.0/255.0, blue: 109.0/255.0, alpha: 0.80)
         let swiftColor = #colorLiteral(red: 0.5137254902, green: 0.8470588235, blue: 0.8117647059, alpha: 1)
         annoView.centerOffset = CGPoint(x: 100, y: 400)
         annoView.pinTintColor = swiftColor
@@ -235,6 +248,56 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate, UITableViewD
             }
             alertController.addAction(cancelAction)
         }
+    
+
+    @IBAction func mailButt(sender: AnyObject) {
+        //        let listingClass = PFObject(className: "Recipe")
+        _ = sender as! UIBarButtonItem
+        
+        let mailComposer = MFMailComposeViewController()
+
+        
+        
+        mailComposer.mailComposeDelegate = self
+        mailComposer.setToRecipients(["artisanb@me.com"])
+        mailComposer.setSubject("[iPhone App Contact] Interested in \(title!)")
+        //        mailComposer.setMessageBody("", isHTML: true)
+        mailComposer.setMessageBody("Hello,<br>I saw <strong>\(propObj["name"]!)</strong> and would like some more information about this property<br>Thanks,<br>Regards", isHTML: true)
+        // Attach an image
+//        guard let imageData = UIImageJPEGRepresentation(leftIconView.image!, 1.0) else { return }
+//        mailComposer.addAttachmentData(imageData, mimeType: "image/png", fileName: "property.png")
+        
+        if MFMailComposeViewController.canSendMail() {
+            present(mailComposer, animated: true, completion: nil)
+        } else {
+            
+            let alertController = UIAlertController(title: "Li Read Group", message: "Your device cannot send emails. Please configure an email address into Settings -> Mail, Contacts, Calendars.", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+            alertController.addAction(cancelAction)
+   
+        }
+    }
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     @IBAction func gotToAllMap(_ sender: Any) {
         performSegue(withIdentifier: "toAllListingsMapVC", sender: self)
