@@ -43,11 +43,36 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate, UITableViewD
     var region: MKCoordinateRegion!
     var mapType: MKMapType!
 
+    var movieList:[PFObject] = []
+    var player:AVPlayer!
+    var playerLayer:AVPlayerLayer!
+    
+    
+    
     @IBAction func playBtn(_ sender: Any) {
      
-        //        playVideo()
-        var videoUrl:String!
 
+//        var videoUrl:String!
+//
+//        let query = PFQuery(className: "allListings")
+//        query.findObjectsInBackground { (object, error) in
+//            if (error == nil && object != nil) {
+//                let videoFile = self.propObj["movie"] as! PFFile
+//                
+//                videoUrl = videoFile.url
+//                print(videoUrl)
+//                self.setupVideoPlayerWithURL(url: NSURL(string: videoUrl)!)
+//            }
+//        }
+        print("button tapped")
+                        playVideo()
+    }
+    func playVideo() {
+
+//        var videoUrl:String!
+        var videoUrl = self.propObj["movie"] as? String
+//        var playerLayer:AVPlayerLayer!
+        
         let query = PFQuery(className: "allListings")
         query.findObjectsInBackground { (object, error) in
             if (error == nil && object != nil) {
@@ -55,71 +80,31 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate, UITableViewD
                 
                 videoUrl = videoFile.url
                 print(videoUrl)
-                self.setupVideoPlayerWithURL(url: NSURL(string: videoUrl)!)
+                self.setupVideoPlayerWithURL(url: NSURL(string: videoUrl!)!)
             }
         }
-        print("button tapped")
     }
-//    func playVideo() {
-//        guard let path = Bundle.main.path(forResource: "mercer", ofType:"mp4") else {
-//            debugPrint("video.m4v not found")
-//            return
-//        }
-//        let player = AVPlayer(url: URL(fileURLWithPath: path))
-//
-//        let playerController = AVPlayerViewController()
-//        playerController.player = player
-//        present(playerController, animated: true) {
-//            player.play()
-//        }
-//    }
  
+    func setupVideoPlayerWithURL(url:NSURL) {
+
+        let player = AVPlayer(url: url as URL)
+        let playerController = AVPlayerViewController()
+        
+        playerController.player = player
+        present(playerController, animated: true) {
+            player.play()
+
+        }
+
+        
     
+    }
+
     
     
 
-var movieList:[PFObject] = []
 
-    var player:AVPlayer!
-    var playerLayer:AVPlayerLayer!
-    
-  
-  
-    
-//    func queryAllListings() {
-//        recentListings.removeAll()
-//
-//        let query = PFQuery(className: PROP_CLASS_NAME)
-//
-//        query.order(byDescending: "price")
-//        query.cachePolicy = .networkElseCache
-//
-//        query.findObjectsInBackground { (objects, error) -> Void in
-//            if error == nil {
-//                if let objects = objects  {
-//                    for object in objects {
-//                        self.recentListings.append(object)
-//                        // print(object)
-//                    }
-//                }
-//                self.listingCollectionView.reloadData()
-//                //self.view.hideHUD()
-//            } else {
-//                print("alex")
-//
-//            }
-//        }
-//    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     
     
     @IBAction func share(_ sender: Any) {
@@ -135,16 +120,6 @@ var movieList:[PFObject] = []
     
     
     
-    func setupVideoPlayerWithURL(url:NSURL) {
-        
-        player = AVPlayer()
-        playerLayer = AVPlayerLayer(player: self.player)
-        playerLayer.videoGravity = AVLayerVideoGravityResizeAspect
-        playerLayer.frame = self.view.frame   // take up entire screen
-        self.view.layer.addSublayer(self.playerLayer)
-        player.play()
-    }
-
     
     
     
