@@ -9,16 +9,10 @@
 import UIKit
 import MapKit
 class Annotations: NSObject, MKAnnotation {
-    
-//    let object = PFObject()
-//    let geoPoint = PFGeoPoint()
-//    
+
     var coordinate: CLLocationCoordinate2D
 
     init(coordinate: CLLocationCoordinate2D) {
-//              super.init()
-//                self.title = title
-//                self.subtitle = subtitle
         self.coordinate = coordinate
         
     }

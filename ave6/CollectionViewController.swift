@@ -14,7 +14,7 @@ class CollectionViewController: UICollectionViewController {
 
 @IBOutlet weak var listingCollectionView: UICollectionView!
 
-    var recentListings = NSMutableArray()
+    var recentListings:[PFObject] = []
     override func viewWillAppear(_ animated: Bool) {
         print("Im in View Will Appear")
         super.viewWillAppear(animated)
@@ -61,7 +61,7 @@ class CollectionViewController: UICollectionViewController {
         //cell.image.image = nil;
         
         var listingClass = PFObject(className: "allListings")
-        listingClass = recentListings[indexPath.row] as! PFObject
+        listingClass = recentListings[indexPath.row]
         DispatchQueue.main.async(execute: { () -> Void in
             
             let imageFile = listingClass[PROP_IMAGE] as? PFFile
@@ -99,7 +99,7 @@ class CollectionViewController: UICollectionViewController {
         navigationItem.backBarButtonItem = barBtn
         
         var listingClass = PFObject(className: PROP_CLASS_NAME)
-        listingClass = recentListings[indexPath.row] as! PFObject
+        listingClass = recentListings[indexPath.row]
 
         let pdVC =  storyboard!.instantiateViewController(withIdentifier: "PropertyDetails") as! NewDetailViewController
         pdVC.propObj = listingClass
@@ -110,7 +110,7 @@ class CollectionViewController: UICollectionViewController {
 
 
     func queryAllListings() {
-        recentListings.removeAllObjects()
+        recentListings.removeAll()
         
         let query = PFQuery(className: PROP_CLASS_NAME)
         
@@ -121,7 +121,7 @@ class CollectionViewController: UICollectionViewController {
             if error == nil {
                 if let objects = objects  {
                     for object in objects {
-                        self.recentListings.add(object)
+                        self.recentListings.append(object)
                        // print(object)
                     }
                 }

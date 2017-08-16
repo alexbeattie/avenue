@@ -33,7 +33,7 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate, UITableViewD
     
 
     
-    
+    var propObj = PFObject(className: "allListings")
     var listingClass = PFObject(className: "allListings")
     var addressItems = PFGeoPoint()
 
@@ -42,16 +42,85 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate, UITableViewD
     var pinView:MKPinAnnotationView!
     var region: MKCoordinateRegion!
     var mapType: MKMapType!
-//    let website: String? = "fuck"
-    
 
-        @IBAction func playBtn(_ sender: Any) {
-        playVideo()
+    @IBAction func playBtn(_ sender: Any) {
+     
+        //        playVideo()
+        var videoUrl:String!
+
+        let query = PFQuery(className: "allListings")
+        query.findObjectsInBackground { (object, error) in
+            if (error == nil && object != nil) {
+                let videoFile = self.propObj["movie"] as! PFFile
+                
+                videoUrl = videoFile.url
+                print(videoUrl)
+                self.setupVideoPlayerWithURL(url: NSURL(string: videoUrl)!)
+            }
+        }
         print("button tapped")
-
     }
-    
+//    func playVideo() {
+//        guard let path = Bundle.main.path(forResource: "mercer", ofType:"mp4") else {
+//            debugPrint("video.m4v not found")
+//            return
+//        }
+//        let player = AVPlayer(url: URL(fileURLWithPath: path))
+//
+//        let playerController = AVPlayerViewController()
+//        playerController.player = player
+//        present(playerController, animated: true) {
+//            player.play()
+//        }
+//    }
  
+    
+    
+    
+
+var movieList:[PFObject] = []
+
+    var player:AVPlayer!
+    var playerLayer:AVPlayerLayer!
+    
+  
+  
+    
+//    func queryAllListings() {
+//        recentListings.removeAll()
+//
+//        let query = PFQuery(className: PROP_CLASS_NAME)
+//
+//        query.order(byDescending: "price")
+//        query.cachePolicy = .networkElseCache
+//
+//        query.findObjectsInBackground { (objects, error) -> Void in
+//            if error == nil {
+//                if let objects = objects  {
+//                    for object in objects {
+//                        self.recentListings.append(object)
+//                        // print(object)
+//                    }
+//                }
+//                self.listingCollectionView.reloadData()
+//                //self.view.hideHUD()
+//            } else {
+//                print("alex")
+//
+//            }
+//        }
+//    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     @IBAction func share(_ sender: Any) {
         let textToShare = propObj["name"]! as! String
@@ -66,15 +135,35 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate, UITableViewD
     
     
     
-    
+    func setupVideoPlayerWithURL(url:NSURL) {
+        
+        player = AVPlayer()
+        playerLayer = AVPlayerLayer(player: self.player)
+        playerLayer.videoGravity = AVLayerVideoGravityResizeAspect
+        playerLayer.frame = self.view.frame   // take up entire screen
+        self.view.layer.addSublayer(self.playerLayer)
+        player.play()
+    }
+
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tableView.delegate = self
         tableView.dataSource = self
+//        var videoUrl:String!
+        
+//        let query = PFQuery(className: "allListings")
+//        query.findObjectsInBackground { (object, error) in
+//            if (error == nil && object != nil) {
+//                let videoFile = self.propObj["movie"] as! PFFile
+//
+//                videoUrl = videoFile.url
+//                print(videoUrl)
+//                self.setupVideoPlayerWithURL(url: NSURL(string: videoUrl)!)
+//            }
+//        }
         
         if mapView.annotations.count != 0 {
             annotation = mapView.annotations[0]
@@ -90,7 +179,7 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate, UITableViewD
         
         mapView.setRegion(mapView.region, animated: true)
         
-        
+      
         if let theLocation = propObj["addressItems"] as? PFGeoPoint {
             CLLocationCoordinate2DMake(addressItems.latitude, addressItems.longitude)
             print(theLocation.latitude, theLocation.longitude)
@@ -103,10 +192,32 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate, UITableViewD
         mapView.selectAnnotation(newAnnotation, animated: true)
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 140
+        
+
+//        getSongs()
+        
 
     }
 
-    var propObj = PFObject(className: "allListings")
+//    var audioPlayer = AVPlayer()
+//    var songNmber = Int()
+//
+//    var idArray = [String]()
+//    var nameArray = [String]()
+//
+//    func getSongs() {
+//        let songQuery = PFQuery(className: "movie")
+//        songQuery.getObjectInBackground(withId: idArray[songNmber], block: {
+//            (object: PFObject?, error : NSError?) -> Void in
+//
+//            if let audioFile = object?["movie"] as? PFFile {
+//                let audioFileUrlString: String = audioFile.url!
+//                let audioFileUrl = NSURL(string: audioFileUrlString)!
+//                self.audioPlayer = AVPlayer(url: audioFileUrl as URL)
+//                self.audioPlayer.play()
+//            }
+//            } as? (PFObject?, Error?) -> Void)
+//    }
 
    
     override func viewWillAppear(_ animated: Bool) {
@@ -119,18 +230,7 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate, UITableViewD
         
     }
     
-    private func playVideo() {
-        guard let path = Bundle.main.path(forResource: "mercer", ofType:"mp4") else {
-            debugPrint("video.m4v not found")
-            return
-        }
-        let player = AVPlayer(url: URL(fileURLWithPath: path))
-        let playerController = AVPlayerViewController()
-        playerController.player = player
-        present(playerController, animated: true) {
-            player.play()
-        }
-    }
+  
     // start tableview
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -151,17 +251,7 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate, UITableViewD
         if let theDesc = propObj["listingDescription"] {
             cell.propDesc.text = theDesc as? String
         }
-        
-        if let thumbImage = propObj["imageFile"] as? PFFile {
-            thumbImage.getDataInBackground() { (imageData, error) -> Void in
-                if error == nil {
-                    if let imageData = imageData {
-                        cell.imageView?.image = UIImage(data:imageData)
-                        print(thumbImage)
-                    }
-                }
-            }
-        }
+
         
         return cell
     }

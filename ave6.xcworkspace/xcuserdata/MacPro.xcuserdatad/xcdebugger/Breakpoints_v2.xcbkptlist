@@ -2,4 +2,118 @@
 <Bucket
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ave6/Annotations.swift"
+            timestampString = "524601321.206315"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "13"
+            endingLineNumber = "13"
+            landmarkName = "Annotations"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ave6.Annotations.coordinate.getter : __C.CLLocationCoordinate2D"
+                  moduleName = "ave6"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/MacPro/Dropbox/CODE/ave6%20copy%202/ave6/Annotations.swift"
+                  timestampString = "524601321.291558"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "104">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ave6.Annotations.coordinate.setter : __C.CLLocationCoordinate2D"
+                  moduleName = "ave6"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/MacPro/Dropbox/CODE/ave6%20copy%202/ave6/Annotations.swift"
+                  timestampString = "524601321.293952"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "112">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ave6/Annotations.swift"
+            timestampString = "524601321.206375"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "init(coordinate:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ave6.Annotations.__allocating_init(coordinate: __C.CLLocationCoordinate2D) -&gt; ave6.Annotations"
+                  moduleName = "ave6"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/MacPro/Dropbox/CODE/ave6%20copy%202/ave6/Annotations.swift"
+                  timestampString = "524601321.299177"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ave6.Annotations.init(coordinate: __C.CLLocationCoordinate2D) -&gt; ave6.Annotations"
+                  moduleName = "ave6"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/MacPro/Dropbox/CODE/ave6%20copy%202/ave6/Annotations.swift"
+                  timestampString = "524601321.301478"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "44">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ave6/Annotations.swift"
+            timestampString = "524601321.206426"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "init(coordinate:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

@@ -17,6 +17,8 @@ class AllListingsMapView: UIViewController, MKMapViewDelegate, CLLocationManager
     var annotation:MKAnnotation!
     var pointAnnotation: MKPointAnnotation!
     var pinView:MKPinAnnotationView!
+    var listingClass = PFObject(className: "allListings")
+    var addressItems = PFGeoPoint()
 
     @IBOutlet weak var mapView: MKMapView!
     var mapItems = NSMutableArray()
@@ -49,6 +51,8 @@ class AllListingsMapView: UIViewController, MKMapViewDelegate, CLLocationManager
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         
+//        let addressItems = PFGeoPoint(latitude: (propObj["addressItems"] as AnyObject).latitude, longitude: (propObj["addressItems"] as AnyObject).longitude)
+        
         let initialLocation = CLLocation(latitude: 47.604147, longitude: -122.334518)
         let regionRadius: CLLocationDistance = 50000
         func centerMapOnLocation(location:CLLocation) {
@@ -62,6 +66,7 @@ class AllListingsMapView: UIViewController, MKMapViewDelegate, CLLocationManager
         let annotationQuery = PFQuery(className: PROP_CLASS_NAME)
         let swOfSF = PFGeoPoint(latitude:46.623988, longitude:-123.485756)
         let neOfSF = PFGeoPoint(latitude:48.878275, longitude:-120.307961)
+
         annotationQuery.whereKey("addressItems",withinGeoBoxFromSouthwest: swOfSF, toNortheast: neOfSF)
         annotationQuery.findObjectsInBackground { (objects, error) -> Void in
             if error == nil {
@@ -74,30 +79,19 @@ class AllListingsMapView: UIViewController, MKMapViewDelegate, CLLocationManager
                     let theTitle = recipe["name"] as! String
                     let subTitle = recipe["cost"] as! String
                     
-                    if let thumbImage = self.propObj["imageFile"] as? PFFile {
-                        thumbImage.getDataInBackground() { (imageData, error) -> Void in
-                            if error == nil {
-                                if let imageData = imageData {
-                                    self.propImage.image = UIImage(data:imageData)
-                                    print(self.propImage.image)
-
-                                }
-                            }
-                        }
-                    }
                     
-                               print("This is \(recipe)")
-                    
+               print("This is \(recipe)")
                     let annotation = MKPointAnnotation()
                     annotation.coordinate = CLLocationCoordinate2DMake(point.latitude, point.longitude)
                     annotation.title = theTitle
                     annotation.subtitle = subTitle
-                
+                    
                     self.mapView.addAnnotation(annotation)
                 }
             } else {
                 print(error!)
-            } }
+            }
+        }
     }
  
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -119,6 +113,7 @@ class AllListingsMapView: UIViewController, MKMapViewDelegate, CLLocationManager
         if let thumbImage = propObj["imageFile"] as? PFFile {
             thumbImage.getDataInBackground() { (imageData, error) -> Void in
                 if error == nil {
+//                    print(error)
                     if let imageData = imageData {
                         print(imageData)
                         leftIconView.image = UIImage(data:imageData)
@@ -146,6 +141,42 @@ class AllListingsMapView: UIViewController, MKMapViewDelegate, CLLocationManager
         
         
         return annoView
+        
+    }
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        
+
+        let alertController = UIAlertController(title: nil, message: "Driving directions", preferredStyle: .actionSheet)
+        let OKAction = UIAlertAction(title: "Get Directions", style: .default) { (action) in
+            self.goOutToGetMap()
+        }
+        alertController.addAction(OKAction)
+        
+        present(alertController, animated: true) {
+            
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+            
+        }
+        alertController.addAction(cancelAction)
+    }
+    func goOutToGetMap() {
+        let addressItems = PFGeoPoint(latitude: (self.propObj["addressItems"] as AnyObject).latitude, longitude: (self.propObj["addressItems"] as AnyObject).longitude)
+        print(addressItems)
+        if let theLocation = self.propObj["addressItems"] as? PFGeoPoint {
+            CLLocationCoordinate2DMake(addressItems.latitude, addressItems.longitude)
+            print(theLocation)
+        }
+        let location: CLLocationCoordinate2D = CLLocationCoordinate2DMake((self.propObj["addressItems"] as AnyObject).latitude, (self.propObj["addressItems"] as AnyObject).longitude)
+        
+        let placemark = MKPlacemark(coordinate: location, addressDictionary: nil)
+        
+        let item = MKMapItem(placemark: placemark)
+        item.name = self.propObj["name"] as? String
+        item.openInMaps (launchOptions: [MKLaunchOptionsMapTypeKey: 2,
+                                         MKLaunchOptionsMapCenterKey:NSValue(mkCoordinate: placemark.coordinate),
+                                         MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving])
+        
         
     }
 }

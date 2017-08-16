@@ -14,6 +14,7 @@ import Parse
 class NewAnnotations: NSObject, MKAnnotation {
     let object = PFObject()
     let geoPoint = PFGeoPoint()
+//    let propImage = UIImage(data: data)
     
     var coordinate: CLLocationCoordinate2D
 
