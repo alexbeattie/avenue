@@ -50,38 +50,22 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate, UITableViewD
     
     
     @IBAction func playBtn(_ sender: Any) {
-     
 
-//        var videoUrl:String!
-//
-//        let query = PFQuery(className: "allListings")
-//        query.findObjectsInBackground { (object, error) in
-//            if (error == nil && object != nil) {
-//                let videoFile = self.propObj["movie"] as! PFFile
-//                
-//                videoUrl = videoFile.url
-//                print(videoUrl)
-//                self.setupVideoPlayerWithURL(url: NSURL(string: videoUrl)!)
-//            }
-//        }
         print("button tapped")
                         playVideo()
     }
     func playVideo() {
-
-//        var videoUrl:String!
-        var videoUrl = self.propObj["movie"] as? String
-//        var playerLayer:AVPlayerLayer!
         
+        var videoUrl:String? = self.propObj["movie"] as? String
         let query = PFQuery(className: "allListings")
         query.findObjectsInBackground { (object, error) in
             if (error == nil && object != nil) {
-                let videoFile = self.propObj["movie"] as! PFFile
                 
-                videoUrl = videoFile.url
-                print(videoUrl)
-                self.setupVideoPlayerWithURL(url: NSURL(string: videoUrl!)!)
+                let videoFile = self.propObj["moviefile"] as! String
+                videoUrl = videoFile
+
             }
+            self.setupVideoPlayerWithURL(url: NSURL(string: videoUrl!)!)
         }
     }
  
@@ -95,9 +79,6 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate, UITableViewD
             player.play()
 
         }
-
-        
-    
     }
 
     
