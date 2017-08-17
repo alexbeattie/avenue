@@ -327,24 +327,7 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate, UITableViewD
         controller.dismiss(animated: true, completion: nil)
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     @IBAction func gotToAllMap(_ sender: Any) {
         performSegue(withIdentifier: "toAllListingsMapVC", sender: self)
     }

@@ -201,17 +201,18 @@
                         </constraints>
                     </view>
                     <toolbarItems>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="ndn-fg-ohQ"/>
                         <barButtonItem systemItem="compose" id="Xp1-Du-1OU">
                             <connections>
                                 <action selector="mailButtWithSender:" destination="3AO-ZM-L6X" id="TZN-aT-p9c"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem width="132" style="plain" systemItem="fixedSpace" id="tEP-8o-Zf9"/>
                         <barButtonItem systemItem="play" id="l6J-6j-DVy">
                             <connections>
                                 <action selector="playBtn:" destination="3AO-ZM-L6X" id="rHv-Us-OUU"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem width="132" style="plain" systemItem="fixedSpace" id="jNU-Pm-edF"/>
                         <barButtonItem image="map" style="plain" id="E2Z-zV-mjo">
                             <connections>
                                 <action selector="gotToAllMap:" destination="3AO-ZM-L6X" id="7If-3m-Yol"/>
@@ -271,7 +272,7 @@
         <!--Navigation Controller-->
         <scene sceneID="dhz-mP-Bdo">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="xei-xh-yzw" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" toolbarHidden="NO" id="xei-xh-yzw" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nI3-lc-o2e">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -282,6 +283,7 @@
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="RTo-mE-lPP">
                         <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.17254901959999999" green="0.83137254900000002" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
                     </toolbar>
                     <connections>
                         <segue destination="g5V-Iu-pDa" kind="relationship" relationship="rootViewController" id="dC0-jB-3RG"/>
