@@ -129,6 +129,13 @@
 			name = Movie;
 			sourceTree = "<group>";
 		};
+		8ECA92931F489ABE00D5126A /* Home */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
 		8EF732881F1ACB89004CF9B2 = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +158,7 @@
 		8EF732931F1ACB89004CF9B2 /* ave6 */ = {
 			isa = PBXGroup;
 			children = (
+				8ECA92931F489ABE00D5126A /* Home */,
 				8EC8809A1F422EED0006938C /* Movie */,
 				8E60ACBF1F40C5400024B2CA /* Utility */,
 				8E7F847D1F3CBFC000057563 /* Views */,

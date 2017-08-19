@@ -33,8 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        ]
         
         UINavigationBar.appearance().titleTextAttributes = [
-            NSFontAttributeName: UIFont(name: "Bodoni MT", size: 22)!,
-            NSForegroundColorAttributeName: #colorLiteral(red: 0.1729493737, green: 0.8569635749, blue: 0.8771796823, alpha: 1)
+            NSFontAttributeName: UIFont(name: "Bodoni MT", size: 18)!
         ]
 //        UINavigationBar.appearance().barTintColor = #colorLiteral(red: 0.1729493737, green: 0.8569635749, blue: 0.8771796823, alpha: 0.5)
         

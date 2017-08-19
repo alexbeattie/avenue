@@ -29,7 +29,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="tintColor" red="0.17254901959999999" green="0.83137254900000002" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.36470588235294116" green="0.36470588235294116" blue="0.36470588235294116" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="0iz-Sv-8dx">
                             <size key="itemSize" width="200" height="200"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -146,7 +146,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X59-Co-kXG">
                                                     <rect key="frame" x="8" y="37" width="359" height="21"/>
                                                     <fontDescription key="fontDescription" name="BodoniSvtyTwoITCTT-Book" family="Bodoni 72" pointSize="17"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="textColor" red="0.23921568627450979" green="0.76078431372549016" blue="0.81960784313725488" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IgG-NX-sKs">
@@ -201,19 +201,19 @@
                         </constraints>
                     </view>
                     <toolbarItems>
-                        <barButtonItem systemItem="compose" id="Xp1-Du-1OU">
+                        <barButtonItem image="icons8-message" id="Xp1-Du-1OU">
                             <connections>
                                 <action selector="mailButtWithSender:" destination="3AO-ZM-L6X" id="TZN-aT-p9c"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem width="132" style="plain" systemItem="fixedSpace" id="tEP-8o-Zf9"/>
-                        <barButtonItem systemItem="play" id="l6J-6j-DVy">
+                        <barButtonItem image="movie" id="l6J-6j-DVy">
                             <connections>
                                 <action selector="playBtn:" destination="3AO-ZM-L6X" id="rHv-Us-OUU"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem width="132" style="plain" systemItem="fixedSpace" id="jNU-Pm-edF"/>
-                        <barButtonItem image="map" style="plain" id="E2Z-zV-mjo">
+                        <barButtonItem image="icons8-point_objects" width="8" style="plain" id="E2Z-zV-mjo">
                             <connections>
                                 <action selector="gotToAllMap:" destination="3AO-ZM-L6X" id="7If-3m-Yol"/>
                                 <segue destination="yfp-qm-VGl" kind="show" identifier="toAllListingsMapVC" id="V1d-g2-kVq"/>
@@ -269,6 +269,24 @@
             </objects>
             <point key="canvasLocation" x="2462" y="106"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="JFr-Ug-foa">
+            <objects>
+                <viewController id="yWL-O1-7SO" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hk2-pT-3b0"/>
+                        <viewControllerLayoutGuide type="bottom" id="NZY-zZ-lDP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="blM-Zw-Fjx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cUY-D5-2d0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-351" y="158"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="dhz-mP-Bdo">
             <objects>
@@ -277,13 +295,13 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nI3-lc-o2e">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" red="0.17254901959999999" green="0.83137254900000002" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.36470588240000001" green="0.36470588240000001" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="RTo-mE-lPP">
                         <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" red="0.17254901959999999" green="0.83137254900000002" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.36470588240000001" green="0.36470588240000001" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </toolbar>
                     <connections>
                         <segue destination="g5V-Iu-pDa" kind="relationship" relationship="rootViewController" id="dC0-jB-3RG"/>
@@ -295,6 +313,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="map" width="22" height="22"/>
+        <image name="icons8-message" width="16" height="16"/>
+        <image name="icons8-point_objects" width="24" height="24"/>
+        <image name="movie" width="23" height="18"/>
     </resources>
 </document>

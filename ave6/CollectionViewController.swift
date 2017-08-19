@@ -32,6 +32,12 @@ class CollectionViewController: UICollectionViewController {
         layout.itemSize = CGSize(width: width, height: width)
         
         self.title = "Avenue Properties"
+       
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
+        imageView.contentMode = .scaleAspectFit
+        let image = UIImage(named: "avenuelogotype")
+        imageView.image = image
+        navigationItem.titleView = imageView
 
         queryAllListings()
     }
