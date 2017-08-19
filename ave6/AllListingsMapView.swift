@@ -20,7 +20,8 @@ class AllListingsMapView: UIViewController, MKMapViewDelegate, CLLocationManager
     var listingClass = PFObject(className: "allListings")
     var addressItems = PFGeoPoint()
     var coords: CLLocationCoordinate2D?
-
+    
+    
     @IBOutlet weak var mapView: MKMapView!
     var mapItems = NSMutableArray()
     var recentListings = NSMutableArray()
@@ -29,36 +30,7 @@ class AllListingsMapView: UIViewController, MKMapViewDelegate, CLLocationManager
 
     override func awakeFromNib() {
         super.awakeFromNib()
-//        let annotationQuery = PFQuery(className: PROP_CLASS_NAME)
-//        let swOfSF = PFGeoPoint(latitude:46.623988, longitude:-123.485756)
-//        let neOfSF = PFGeoPoint(latitude:48.878275, longitude:-120.307961)
-//
-//        annotationQuery.whereKey("addressItems",withinGeoBoxFromSouthwest: swOfSF, toNortheast: neOfSF)
-//        annotationQuery.findObjectsInBackground { (objects, error) -> Void in
-//            if error == nil {
-//
-//                print("Success")
-//                let mappedItems = objects! as [PFObject]
-//
-//                for mappedItem in mappedItems {
-//                    let point = mappedItem["addressItems"] as! PFGeoPoint
-//                    print(point)
-//                    let theTitle = mappedItem["name"] as! String
-//                    //                    let subTitle = recipe["cost"] as! String
-//                    print(theTitle)
-//                    let annotation = MKPointAnnotation()
-//                    annotation.coordinate = CLLocationCoordinate2DMake(point.latitude, point.longitude)
-//                    annotation.title = theTitle
-//                    //                    annotation.subtitle = subTitle
-//                    self.mapView.addAnnotation(annotation)
-//                    print(annotation.coordinate.latitude, annotation.coordinate.longitude)
-//
-//                }
-//
-//            } else {
-//                print(error!)
-//            }
-//        }
+
     }
     override func viewWillDisappear(_ animated: Bool)
     {
@@ -68,11 +40,11 @@ class AllListingsMapView: UIViewController, MKMapViewDelegate, CLLocationManager
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
-//        if mapView.annotations.count != 0 {
-//            annotation = mapView.annotations[0]
-//            mapView.removeAnnotation(annotation)
-//
-//        }
+        if mapView.annotations.count != 0 {
+            annotation = mapView.annotations[0]
+            mapView.removeAnnotation(annotation)
+
+        }
         self.title = "All Listings Map"
         addAnnotations()
         
@@ -100,16 +72,16 @@ class AllListingsMapView: UIViewController, MKMapViewDelegate, CLLocationManager
                 for mappedItem in mappedItems {
                     
                     let point = mappedItem["addressItems"] as! PFGeoPoint
-                    //                    print(point)
                     let theTitle = mappedItem["name"] as! String
-                    //                    let subTitle = recipe["cost"] as! String
+                    let subTitle = mappedItem["cost"] as! String
                     //                    print(theTitle)
                     let annotation = MKPointAnnotation()
                     annotation.coordinate = CLLocationCoordinate2DMake(point.latitude, point.longitude)
                     
                     //                    print(annotation.coordinate)
                     annotation.title = theTitle
-                    //                    annotation.subtitle = subTitle
+                    annotation.subtitle = subTitle
+                
                     self.mapView.addAnnotation(annotation)
                     print(annotation.coordinate.latitude, annotation.coordinate.longitude)
                     //                    print(mappedItem)
@@ -153,9 +125,7 @@ class AllListingsMapView: UIViewController, MKMapViewDelegate, CLLocationManager
        
         }
     }
-    func goOutToGetMap() {
-        
-    }
+    
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
     
         if control == view.rightCalloutAccessoryView {
@@ -163,14 +133,19 @@ class AllListingsMapView: UIViewController, MKMapViewDelegate, CLLocationManager
             
             let annotation = MKPointAnnotation()
             let point = PFGeoPoint()
-            annotation.coordinate = CLLocationCoordinate2DMake(point.latitude, point.longitude)
             annotation.title = propObj["name"] as? String
-         
+//            print(view.annotation?.title)
+            
+            
+            annotation.coordinate = CLLocationCoordinate2DMake(point.latitude, point.longitude)
+
             let placemark = MKPlacemark(coordinate: view.annotation!.coordinate, addressDictionary: nil)
+            
             let mapItem = MKMapItem(placemark: placemark)
-            mapItem.name = self.propObj["name"] as? String
-            
-            
+
+//            mapItem.name = propObj["name"] as? String
+            mapItem.name = view.annotation!.title!
+            print(mapItem.name)
             let launchOptions = [MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving]
             
             
