@@ -98,6 +98,14 @@
                             <outlet property="delegate" destination="g5V-Iu-pDa" id="boW-mf-ca2"/>
                         </connections>
                     </collectionView>
+                    <toolbarItems>
+                        <barButtonItem image="alllistingsmap" id="Llw-OK-tJE">
+                            <connections>
+                                <action selector="allListingsMap:" destination="g5V-Iu-pDa" id="Z7H-o5-aUp"/>
+                                <segue destination="yfp-qm-VGl" kind="show" id="viW-sv-zBd"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" id="d7A-ot-AF3">
                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="Zg5-9Z-cOU">
                             <connections>
@@ -105,6 +113,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="listingCollectionView" destination="AV3-8J-ynE" id="i88-AE-RN4"/>
                         <segue destination="3AO-ZM-L6X" kind="show" identifier="mySegue" action="showDetailViewController:sender:" id="j6b-tT-DZf"/>
@@ -269,24 +278,6 @@
             </objects>
             <point key="canvasLocation" x="2462" y="106"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="JFr-Ug-foa">
-            <objects>
-                <viewController id="yWL-O1-7SO" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="hk2-pT-3b0"/>
-                        <viewControllerLayoutGuide type="bottom" id="NZY-zZ-lDP"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="blM-Zw-Fjx">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cUY-D5-2d0" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-351" y="158"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="dhz-mP-Bdo">
             <objects>
@@ -313,8 +304,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="alllistingsmap" width="18" height="21"/>
         <image name="icons8-message" width="16" height="16"/>
         <image name="icons8-point_objects" width="24" height="24"/>
         <image name="movie" width="23" height="18"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="viW-sv-zBd"/>
+    </inferredMetricsTieBreakers>
 </document>

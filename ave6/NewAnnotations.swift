@@ -14,14 +14,18 @@ import Parse
 class NewAnnotations: NSObject, MKAnnotation {
     let object = PFObject()
     let geoPoint = PFGeoPoint()
-//    let propImage = UIImage(data: data)
+    let title:String?
     
     var coordinate: CLLocationCoordinate2D
 
-    init(coordinate: CLLocationCoordinate2D) {
+    init(title: String, coordinate: CLLocationCoordinate2D) {
+        self.title = title
         self.coordinate = coordinate
-        
     }
+//    init(coordinate: CLLocationCoordinate2D) {
+//        self.coordinate = coordinate
+//        
+//    }
 
 }
 

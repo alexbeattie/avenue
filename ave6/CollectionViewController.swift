@@ -14,13 +14,18 @@ class CollectionViewController: UICollectionViewController {
 
 @IBOutlet weak var listingCollectionView: UICollectionView!
 
+    @IBAction func allListingsMap(_ sender: Any) {
+        let vc = AllListingsMapView()
+        present(vc, animated: true, completion: nil)
+
+    }
     var recentListings:[PFObject] = []
     override func viewWillAppear(_ animated: Bool) {
         print("Im in View Will Appear")
         super.viewWillAppear(animated)
 //        queryAllListings()
         
-        
+    
         
         
     }
