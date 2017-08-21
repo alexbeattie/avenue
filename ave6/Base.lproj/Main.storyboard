@@ -215,17 +215,23 @@
                                 <action selector="mailButtWithSender:" destination="3AO-ZM-L6X" id="TZN-aT-p9c"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem width="132" style="plain" systemItem="fixedSpace" id="tEP-8o-Zf9"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="30t-5X-wlD"/>
                         <barButtonItem image="movie" id="l6J-6j-DVy">
                             <connections>
                                 <action selector="playBtn:" destination="3AO-ZM-L6X" id="rHv-Us-OUU"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem width="132" style="plain" systemItem="fixedSpace" id="jNU-Pm-edF"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="upE-a3-liM"/>
                         <barButtonItem image="icons8-point_objects" width="8" style="plain" id="E2Z-zV-mjo">
                             <connections>
                                 <action selector="gotToAllMap:" destination="3AO-ZM-L6X" id="7If-3m-Yol"/>
                                 <segue destination="yfp-qm-VGl" kind="show" identifier="toAllListingsMapVC" id="V1d-g2-kVq"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Ln7-eI-dCY"/>
+                        <barButtonItem image="avenuelogo" id="sua-dU-wxP">
+                            <connections>
+                                <action selector="goToWebLink:" destination="3AO-ZM-L6X" id="hPa-DK-zQI"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
@@ -240,6 +246,7 @@
                     <connections>
                         <outlet property="mapView" destination="QSz-vu-s5M" id="fCO-E6-wRG"/>
                         <outlet property="tableView" destination="2aM-QY-V9I" id="P8T-F9-oAa"/>
+                        <outlet property="webLinkBtn" destination="sua-dU-wxP" id="Ar5-Qc-SHl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0WK-fM-fQx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -276,7 +283,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="giU-OI-tOV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2462" y="106"/>
+            <point key="canvasLocation" x="2684" y="-70"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="k3D-1m-h8b">
+            <objects>
+                <viewController id="xg2-4V-Btw" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="inA-x1-yIj"/>
+                        <viewControllerLayoutGuide type="bottom" id="Y5b-ka-fgW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Gey-3P-tLH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vAN-Lo-Add" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2666" y="762"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dhz-mP-Bdo">
@@ -305,11 +330,12 @@
     </scenes>
     <resources>
         <image name="alllistingsmap" width="18" height="21"/>
+        <image name="avenuelogo" width="20" height="20"/>
         <image name="icons8-message" width="16" height="16"/>
         <image name="icons8-point_objects" width="24" height="24"/>
         <image name="movie" width="23" height="18"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="viW-sv-zBd"/>
+        <segue reference="V1d-g2-kVq"/>
     </inferredMetricsTieBreakers>
 </document>

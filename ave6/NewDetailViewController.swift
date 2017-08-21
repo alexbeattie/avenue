@@ -12,6 +12,7 @@ import MapKit
 import AVKit
 import AVFoundation
 import MessageUI
+import SafariServices
 
 class NewDetailViewController: UIViewController, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate {
     @IBOutlet weak var playBtn: UIButton!
@@ -20,17 +21,9 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate, UITableViewD
     @IBOutlet weak var propName: UILabel!
     @IBOutlet weak var propPrice: UILabel!
     @IBOutlet var propImage: UIImageView!
-    
     @IBOutlet weak var propDesc: UITextView!
     @IBOutlet var mapView: MKMapView!
-    @IBAction func goMainMap(sender: AnyObject) {
-        performSegue(withIdentifier: "allListingsMap", sender: self)
-    }
-    @IBAction func goToMap(sender: AnyObject) {
-        performSegue(withIdentifier: "allListingsMap", sender: self)
-    }
-    
-    
+ 
 
     
     var propObj = PFObject(className: "allListings")
@@ -81,13 +74,6 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate, UITableViewD
         }
     }
 
-    
-    
-
-
-
-    
-    
     @IBAction func share(_ sender: Any) {
         let textToShare = propObj["name"]! as! String
         guard let site = NSURL(string: propObj["url"]! as! String) else { return }
@@ -98,28 +84,11 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate, UITableViewD
         self.present(activityVC, animated: true, completion: nil)
         
     }
-    
-    
-    
-    
-    
-    
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-//        var videoUrl:String!
-        
-//        let query = PFQuery(className: "allListings")
-//        query.findObjectsInBackground { (object, error) in
-//            if (error == nil && object != nil) {
-//                let videoFile = self.propObj["movie"] as! PFFile
-//
-//                videoUrl = videoFile.url
-//                print(videoUrl)
-//                self.setupVideoPlayerWithURL(url: NSURL(string: videoUrl)!)
-//            }
-//        }
         
         if mapView.annotations.count != 0 {
             annotation = mapView.annotations[0]
@@ -150,37 +119,13 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate, UITableViewD
         tableView.estimatedRowHeight = 140
         
 
-//        getSongs()
-        
 
     }
-
-//    var audioPlayer = AVPlayer()
-//    var songNmber = Int()
-//
-//    var idArray = [String]()
-//    var nameArray = [String]()
-//
-//    func getSongs() {
-//        let songQuery = PFQuery(className: "movie")
-//        songQuery.getObjectInBackground(withId: idArray[songNmber], block: {
-//            (object: PFObject?, error : NSError?) -> Void in
-//
-//            if let audioFile = object?["movie"] as? PFFile {
-//                let audioFileUrlString: String = audioFile.url!
-//                let audioFileUrl = NSURL(string: audioFileUrlString)!
-//                self.audioPlayer = AVPlayer(url: audioFileUrl as URL)
-//                self.audioPlayer.play()
-//            }
-//            } as? (PFObject?, Error?) -> Void)
-//    }
-
-   
+ 
     override func viewWillAppear(_ animated: Bool) {
         print("Im in View Will Appear")
         super.viewWillAppear(animated)
         self.title = propObj["name"] as? String
-
 
         self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         
@@ -309,9 +254,6 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate, UITableViewD
         mailComposer.setSubject("[iPhone App Contact] Interested in \(title!)")
         //        mailComposer.setMessageBody("", isHTML: true)
         mailComposer.setMessageBody("Hello,<br>I saw <strong>\(propObj["name"]!)</strong> and would like some more information about this property<br>Thanks,<br>Regards", isHTML: true)
-        // Attach an image
-//        guard let imageData = UIImageJPEGRepresentation(leftIconView.image!, 1.0) else { return }
-//        mailComposer.addAttachmentData(imageData, mimeType: "image/png", fileName: "property.png")
         
         if MFMailComposeViewController.canSendMail() {
             present(mailComposer, animated: true, completion: nil)
@@ -331,4 +273,24 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate, UITableViewD
     @IBAction func gotToAllMap(_ sender: Any) {
         performSegue(withIdentifier: "toAllListingsMapVC", sender: self)
     }
+    
+    
+    // Goto weblink
+    @IBOutlet weak var webLinkBtn: UIBarButtonItem!
+    @IBAction func goToWebLink(_ sender: UIBarButtonItem) {
+        
+        if let videoURL = propObj["url"] as? String {
+            if let newVideoUrl = URL(string: videoURL) {
+                let safariVC = SFSafariViewController(url: newVideoUrl)
+                present(safariVC, animated: true, completion: nil)
+            }
+        }
+    }
+    
+
+    
+    
+
+    
+
 }
