@@ -210,26 +210,28 @@
                         </constraints>
                     </view>
                     <toolbarItems>
-                        <barButtonItem image="icons8-message" id="Xp1-Du-1OU">
+                        <barButtonItem image="new-send" id="Xp1-Du-1OU">
+                            <inset key="imageInsets" minX="3" minY="0.0" maxX="0.0" maxY="6"/>
                             <connections>
                                 <action selector="mailButtWithSender:" destination="3AO-ZM-L6X" id="TZN-aT-p9c"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="30t-5X-wlD"/>
-                        <barButtonItem image="movie" id="l6J-6j-DVy">
+                        <barButtonItem image="video-1" id="l6J-6j-DVy">
                             <connections>
                                 <action selector="playBtn:" destination="3AO-ZM-L6X" id="rHv-Us-OUU"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="upE-a3-liM"/>
-                        <barButtonItem image="icons8-point_objects" width="8" style="plain" id="E2Z-zV-mjo">
+                        <barButtonItem image="all-listings-map" width="8" style="plain" id="E2Z-zV-mjo">
                             <connections>
                                 <action selector="gotToAllMap:" destination="3AO-ZM-L6X" id="7If-3m-Yol"/>
                                 <segue destination="yfp-qm-VGl" kind="show" identifier="toAllListingsMapVC" id="V1d-g2-kVq"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="Ln7-eI-dCY"/>
-                        <barButtonItem image="avenuelogo" id="sua-dU-wxP">
+                        <barButtonItem image="link" id="sua-dU-wxP">
+                            <inset key="imageInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
                             <connections>
                                 <action selector="goToWebLink:" destination="3AO-ZM-L6X" id="hPa-DK-zQI"/>
                             </connections>
@@ -329,11 +331,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="all-listings-map" width="24" height="21"/>
         <image name="alllistingsmap" width="18" height="21"/>
-        <image name="avenuelogo" width="20" height="20"/>
-        <image name="icons8-message" width="16" height="16"/>
-        <image name="icons8-point_objects" width="24" height="24"/>
-        <image name="movie" width="23" height="18"/>
+        <image name="link" width="24" height="24"/>
+        <image name="new-send" width="21" height="21"/>
+        <image name="video-1" width="23" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="V1d-g2-kVq"/>

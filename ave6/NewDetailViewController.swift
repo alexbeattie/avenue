@@ -25,6 +25,7 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate, UITableViewD
     @IBOutlet var mapView: MKMapView!
  
 
+    var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
     
     var propObj = PFObject(className: "allListings")
     var listingClass = PFObject(className: "allListings")
@@ -47,34 +48,46 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate, UITableViewD
         print("button tapped")
                         playVideo()
     }
-    func playVideo() {
+    func startActivityIndicator() {
         
-        var videoUrl:String? = self.propObj["movie"] as? String
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+    }
+    func stopActivityIndicator() {
+        activityIndicator.stopAnimating()
+    }
+    func playVideo() {
+   
+        startActivityIndicator()
+        var videoUrl:String? = self.propObj["movieFile"] as? String
         let query = PFQuery(className: "allListings")
         query.findObjectsInBackground { (object, error) in
             if (error == nil && object != nil) {
-                
-                let videoFile = self.propObj["moviefile"] as! String
-                videoUrl = videoFile
-
+                if let video = self.propObj["moviefile"] as? String {
+                     let videoFile = video
+                     videoUrl = videoFile
+                }
             }
             self.setupVideoPlayerWithURL(url: NSURL(string: videoUrl!)!)
         }
     }
  
     func setupVideoPlayerWithURL(url:NSURL) {
-
         let player = AVPlayer(url: url as URL)
         let playerController = AVPlayerViewController()
         
         playerController.player = player
         present(playerController, animated: true) {
             player.play()
-
+            self.stopActivityIndicator()
         }
     }
 
     @IBAction func share(_ sender: Any) {
+
         let textToShare = propObj["name"]! as! String
         guard let site = NSURL(string: propObj["url"]! as! String) else { return }
         let objectsToShare = [textToShare, site] as [Any]
@@ -87,6 +100,7 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate, UITableViewD
   
     override func viewDidLoad() {
         super.viewDidLoad()
+
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -126,8 +140,9 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate, UITableViewD
         print("Im in View Will Appear")
         super.viewWillAppear(animated)
         self.title = propObj["name"] as? String
-
+        
         self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        stopActivityIndicator()
         
     }
     
@@ -252,7 +267,6 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate, UITableViewD
         mailComposer.mailComposeDelegate = self
         mailComposer.setToRecipients(["artisanb@me.com"])
         mailComposer.setSubject("[iPhone App Contact] Interested in \(title!)")
-        //        mailComposer.setMessageBody("", isHTML: true)
         mailComposer.setMessageBody("Hello,<br>I saw <strong>\(propObj["name"]!)</strong> and would like some more information about this property<br>Thanks,<br>Regards", isHTML: true)
         
         if MFMailComposeViewController.canSendMail() {
@@ -274,13 +288,16 @@ class NewDetailViewController: UIViewController, MKMapViewDelegate, UITableViewD
         performSegue(withIdentifier: "toAllListingsMapVC", sender: self)
     }
     
-    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        startActivityIndicator()
+    }
     // Goto weblink
     @IBOutlet weak var webLinkBtn: UIBarButtonItem!
     @IBAction func goToWebLink(_ sender: UIBarButtonItem) {
-        
         if let videoURL = propObj["url"] as? String {
             if let newVideoUrl = URL(string: videoURL) {
+
                 let safariVC = SFSafariViewController(url: newVideoUrl)
                 present(safariVC, animated: true, completion: nil)
             }
