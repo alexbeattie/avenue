@@ -1,0 +1,21 @@
+PODS:
+  - Alamofire (4.5.0)
+  - Bolts/Tasks (1.8.4)
+  - Parse (1.15.1):
+    - Bolts/Tasks (~> 1.8)
+  - ReadMoreTextView (2.0.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.5)
+  - Parse (~> 1.15)
+  - ReadMoreTextView
+
+SPEC CHECKSUMS:
+  Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
+  Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  Parse: b7a77b20b8a6dede8058da1e2b339593578ce158
+  ReadMoreTextView: aefb9ffe11922c87fd39a09a988d7cc74c8438ba
+
+PODFILE CHECKSUM: fdd644541d85bcb17a5c0c06b4dcac10d3955c15
+
+COCOAPODS: 1.2.0.beta.1
