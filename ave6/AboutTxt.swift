@@ -9,7 +9,7 @@
 import UIKit
 
 class AboutTxt: UIViewController {
-
+ 
   
     override func viewDidLoad() {
         super.viewDidLoad()
